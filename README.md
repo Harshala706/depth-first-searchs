@@ -1,9 +1,12 @@
-<h1>ExpNo 2 : Implement Depth First Search Traversal of a Graph</h1> 
-<h3>Name: </h3>
-<h3>Register Number:     </h3>
-<H3>Aim:</H3>
+# ExpNo 2 : Implement Depth First Search Traversal of a Graph
+
+### Name: BOYALAPALLI HARSHALA REDDY
+### Register Number: 212224040050
+
+## Aim:
 <p> To Implement Depth First Search Traversal of a Graph using Python 3.</p>
-<h3>Theory:</h3>
+
+## Theory:
 <strong>Depth First Traversal </strong>(or DFS) for a graph is like Depth First Traversal of a tree. The only catch here is that, unlike trees, graphs may contain cycles (a node may be visited twice). Use a Boolean visited array to avoid processing a node more than once. A graph can have more than one DFS traversal. 
 Depth-first search is an algorithm for traversing or searching trees or graph data structures. The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 Step 1: Initially, stack and visited arrays are empty.
@@ -45,7 +48,7 @@ Visit node 3
 
 Now, the Stack becomes empty, which means we have visited all the nodes, and our DFS traversal ends.
 
-<h3>Algorithm:</h3>
+## Algorithm:
 <B><ol>
  <li>Construct a Graph with Nodes and Edges</li>
  <li>Depth First Search Uses Stack and Recursion</li>
@@ -53,6 +56,51 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>Find its Successors Or neighbors and Check whether the node is visited or not</li>
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
+
+## PROGRAM:
+
+```
+def dfs(visited, graph, node, path):
+    if node not in visited:
+        visited.add(node)
+        path.append(node)
+        
+        for neighbor in graph.get(node, []):
+            dfs(visited, graph, neighbor, path)
+
+def main():
+    input_data = input().split()
+    if not input_data:
+        return
+        
+    num_nodes = int(input_data[0])
+    num_edges = int(input_data[1])
+    
+    edges_data = input().split()
+    
+    graph = {}
+    for i in range(0, len(edges_data), 2):
+        u = edges_data[i]
+        v = edges_data[i+1]
+        
+        if u not in graph:
+            graph[u] = []
+        if v not in graph:
+            graph[v] = []
+            
+        graph[u].append(v)
+
+    visited = set()
+    traversal_order = []
+    
+    start_node = edges_data[0]
+    dfs(visited, graph, start_node, traversal_order)
+    
+    print(traversal_order)
+
+if __name__ == "__main__":
+    main()
+```
 
 <hr>
 <h3>Sample Input</h3>
@@ -89,7 +137,8 @@ F H <BR>
 ['0', '1', '2', '3', '4']
 
 <hr>
-<h3>Result:</h3>
+
+
+## Result:
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
-
